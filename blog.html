@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Blog — Gölge Rotalar</title>
+  <meta name="description" content="Gölge Rotalar blogu — rota hikâyeleri, keşif notları ve topluluk paylaşımları.">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="assets/icon.png" type="image/png">
+  <link rel="shortcut icon" href="assets/icon.png" type="image/png">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Gölge Rotalar Anasayfa">
+  <img src="assets/icon.png" alt="Gölge Rotalar logo" class="logo">
+        <span class="brand-name">Gölge Rotalar</span>
+      </a>
+      <!-- Mobil hamburger -->
+      <button id="nav-toggle" class="nav-toggle" aria-controls="mobile-nav" aria-expanded="false" aria-label="Menüyü aç">
+        <span class="hamburger" aria-hidden="true"></span>
+      </button>
+
+      <nav class="main-nav" aria-label="Ana Menü">
+        <a href="index.html#routes">Rotalar</a>
+        <a href="vision.html">Hakkımızda</a>
+        <a href="blog.html">Blog</a>
+        <a href="index.html#community">Topluluk</a>
+        <a href="index.html#contact">Bize Ulaşın</a>
+      </nav>
+
+      <!-- Mobil açılır menü (başlangıçta gizli) -->
+      <div id="mobile-nav" class="mobile-nav" aria-hidden="true">
+        <a href="index.html#routes">Rotalar</a>
+        <a href="vision.html">Hakkımızda</a>
+        <a href="blog.html" data-nav="blog">Blog</a>
+        <a href="index.html#community">Topluluk</a>
+        <a href="index.html#contact">Bize Ulaşın</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" style="padding:3rem 1rem">
+    <h1>Blog</h1>
+    <p class="subtitle">Rotaların ardındaki hikâyeler, keşif notları ve topluluk paylaşımları.</p>
+
+    <!-- Basit yazı ekleme arayüzü (localStorage) -->
+    <section id="new-post" style="margin-top:1.2rem">
+      <button id="toggle-new-post" class="btn ghost">Yeni Yazı Ekle</button>
+      <form id="post-form" style="display:none; margin-top:0.8rem; max-width:720px;">
+        <label style="display:block;margin-bottom:.4rem">Başlık<br><input name="title" required style="width:100%"></label>
+        <label style="display:block;margin-bottom:.4rem">Kısa Özet<br><input name="excerpt" required style="width:100%"></label>
+        <label style="display:block;margin-bottom:.4rem">İçerik<br><textarea name="content" rows="6" required style="width:100%"></textarea></label>
+        <label style="display:block;margin-bottom:.4rem">Yazar<br><input name="author" placeholder="Gölge Rotalar" style="width:100%"></label>
+        <div style="display:flex;gap:.6rem">
+          <button type="submit" class="btn primary">Kaydet ve Görüntüle</button>
+          <button type="button" id="cancel-post" class="btn ghost">İptal</button>
+        </div>
+      </form>
+    </section>
+
+    <section id="posts-list" class="cards" style="margin-top:1.2rem">
+      <article class="card">
+        <a class="card-link" href="blog-post-kayakoy-story.html">
+          <h3>Kayaköy'ün Sisli Sokakları: Kısa Bir Anı</h3>
+          <p>Kayaköy'ün terk edilmiş evleri, bir gecede bizi hangi sessiz anlatılara davet etti — rehber güncesinden kısa bir kesit.</p>
+        </a>
+      </article>
+
+      <article class="card">
+        <a class="card-link" href="blog-post-sinop-night-notes.html">
+          <h3>Sinop Kalesi'nde Gece: Dalga, Fener ve Anlatı</h3>
+          <p>Sinop'ta gece yürürken denizin ritmi nasıl bir hikâye örer? Fenerlerin ışığında duyulan eski anekdotlar.</p>
+        </a>
+      </article>
+
+      <article class="card">
+        <a class="card-link" href="blog-post-halfeti-portrait.html">
+          <h3>Halfeti: Sular Altında Kalan Bir Şehrin Portresi</h3>
+          <p>Fotoğraf ve sözler: Halfeti'de tekneyle dolaşırken gördüğümüz ayrıntılar ve sessiz anlar.</p>
+        </a>
+      </article>
+  </section>
+
+    <p style="margin-top:1.5rem"><a class="back-link" href="index.html">← Ana sayfaya dön</a></p>
+  </main>
+
+  <footer class="site-footer container">
+    <div>
+      <strong>Gölge Rotalar</strong>
+      <p>İletişim: <a href="mailto:bugraakbugra@hotmail.com">bugraakbugra@hotmail.com</a> • <a href="https://instagram.com/bugraozcicekk" target="_blank" rel="noopener noreferrer">@bugraozcicekk</a></p>
+    </div>
+    <div>
+      <p>&copy; <span id="year-blog"></span> Gölge Rotalar</p>
+    </div>
+  </footer>
+  <script>document.getElementById('year-blog').textContent = new Date().getFullYear();</script>
+  <script>
+  (function(){
+    // Basit client-side blog kaydı ve listeleme (localStorage)
+    const form = document.getElementById('post-form');
+    const toggle = document.getElementById('toggle-new-post');
+    const cancel = document.getElementById('cancel-post');
+    const list = document.getElementById('posts-list');
+
+    function loadPosts(){
+      // static olanlar zaten HTML içinde; sadece localStorage'dakileri ekle
+      try{
+        const raw = localStorage.getItem('gr_blog_posts_v1');
+        const posts = raw ? JSON.parse(raw) : [];
+        // en son eklenen önce gelsin
+        posts.slice().reverse().forEach(p => {
+          // oluşturulmuşsa tekrar eklemeyelim
+          if(document.querySelector('[data-post-id="'+p.id+'"]')) return;
+          const a = document.createElement('a');
+          a.className = 'card-link';
+          a.href = 'blog-post.html?postId=' + encodeURIComponent(p.id);
+          a.innerHTML = '<h3>'+ (p.title || 'Başlıksız') +'</h3><p>'+ (p.excerpt||'') +'</p>';
+          const art = document.createElement('article'); art.className='card'; art.setAttribute('data-post-id', p.id);
+          art.appendChild(a);
+          list.insertBefore(art, list.firstChild);
+        });
+      }catch(e){ console.warn('loadPosts failed', e) }
+    }
+
+    toggle && toggle.addEventListener('click', ()=>{
+      if(!form) return;
+      const visible = form.style.display !== 'none';
+      form.style.display = visible ? 'none' : 'block';
+      toggle.textContent = visible ? 'Yeni Yazı Ekle' : 'Formu Gizle';
+    });
+    cancel && cancel.addEventListener('click', ()=>{
+      if(!form) return; form.reset(); form.style.display='none'; toggle.textContent='Yeni Yazı Ekle';
+    });
+
+    if(form){
+      form.addEventListener('submit', (ev)=>{
+        ev.preventDefault();
+        const fd = new FormData(form);
+        const post = {
+          id: 'local-' + Date.now(),
+          title: fd.get('title'),
+          excerpt: fd.get('excerpt'),
+          content: fd.get('content').replace(/\n/g,'<br>'),
+          author: fd.get('author') || 'Gölge Rotalar',
+          createdAt: new Date().toISOString()
+        };
+        try{
+          const key = 'gr_blog_posts_v1';
+          const existing = JSON.parse(localStorage.getItem(key) || '[]');
+          existing.push(post);
+          localStorage.setItem(key, JSON.stringify(existing));
+        }catch(e){ console.warn('save post failed', e) }
+        // yönlendir ve yeni yazıyı göster
+        location.href = 'blog-post.html?postId=' + encodeURIComponent(post.id);
+      });
+    }
+
+    // render existing local posts into the list
+    loadPosts();
+  })();
+  </script>
+  <script src="js/main.js"></script>
+</body>
+</html>

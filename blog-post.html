@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Blog Yazısı — Gölge Rotalar</title>
+  <meta name="description" content="Blog yazısı görüntüleyici">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="assets/icon.png" type="image/png">
+  <link rel="shortcut icon" href="assets/icon.png" type="image/png">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Gölge Rotalar Anasayfa">
+  <img src="assets/icon.png" alt="Gölge Rotalar logo" class="logo">
+        <span class="brand-name">Gölge Rotalar</span>
+      </a>
+      <!-- Mobil hamburger -->
+      <button id="nav-toggle" class="nav-toggle" aria-controls="mobile-nav" aria-expanded="false" aria-label="Menüyü aç">
+        <span class="hamburger" aria-hidden="true"></span>
+      </button>
+
+      <nav class="main-nav" aria-label="Ana Menü">
+        <a href="index.html#routes">Rotalar</a>
+        <a href="vision.html">Hakkımızda</a>
+        <a href="blog.html">Blog</a>
+      </nav>
+
+      <div id="mobile-nav" class="mobile-nav" aria-hidden="true">
+        <a href="index.html#routes">Rotalar</a>
+        <a href="vision.html">Hakkımızda</a>
+        <a href="blog.html">Blog</a>
+        <a href="#contact">Bize Ulaşın</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="route-content container">
+    <div id="post-root">
+      <p>Yükleniyor...</p>
+    </div>
+    <p><a class="back-link" href="blog.html">← Bloga geri dön</a></p>
+  </main>
+
+  <footer class="site-footer container">
+    <div>
+      <strong>Gölge Rotalar</strong>
+      <p>İletişim: <a href="mailto:bugraakbugra@hotmail.com">bugraakbugra@hotmail.com</a></p>
+    </div>
+    <div>
+      <p>&copy; <span id="year-post"></span> Gölge Rotalar</p>
+    </div>
+  </footer>
+
+  <script>
+  // Basit blog post görüntüleyici: localStorage'dan id ile getirir
+  (function(){
+    document.getElementById('year-post').textContent = new Date().getFullYear();
+    function qs(key){
+      const params = new URLSearchParams(location.search);
+      return params.get(key);
+    }
+    const id = qs('postId');
+    const root = document.getElementById('post-root');
+    if(!id){ root.innerHTML = '<p>Yanlış istek: postId parametresi eksik. <a href="blog.html">Bloğa dön</a></p>'; return }
+    try{
+      const raw = localStorage.getItem('gr_blog_posts_v1');
+      const posts = raw ? JSON.parse(raw) : [];
+      const p = posts.find(x => String(x.id) === String(id));
+      if(!p){ root.innerHTML = '<p>Yazı bulunamadı veya silinmiş. Yerel kayıtlı yazılar yalnızca bu tarayıcıda görünür. <a href="blog.html">Bloğa dön</a></p>'; return }
+      const html = [];
+      html.push('<h1>' + (p.title||'(Başlıksız)') + '</h1>');
+      html.push('<p class="route-meta">Yazar: ' + (p.author||'Anonim') + ' • ' + (new Date(p.createdAt)).toLocaleDateString() + '</p>');
+      html.push('<div class="post-body">' + (p.content || '') + '</div>');
+      root.innerHTML = html.join('\n');
+    }catch(e){ root.innerHTML = '<p>Yükleme hatası: ' + (e && e.message) + '</p>' }
+  })();
+  </script>
+  <script src="js/main.js"></script>
+</body>
+</html>

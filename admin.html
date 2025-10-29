@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Admin — Gölge Rotalar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="assets/icon.png" type="image/png">
+  <link rel="shortcut icon" href="assets/icon.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/icon.png">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+  <div id="authOverlay" class="auth-overlay" aria-hidden="false">
+    <form id="authForm" class="auth-card" autocomplete="off">
+      <h2>Admin Girişi</h2>
+      <p>Bu sayfaya erişmek için parola ve kod giriniz.</p>
+      <label>
+        Parola
+        <input id="adminPassword" type="password" inputmode="text" autocomplete="off" required>
+      </label>
+      <label>
+        Kod
+        <input id="adminCode" type="text" inputmode="numeric" autocomplete="off" required>
+      </label>
+      <div class="auth-actions">
+        <label class="remember"><input id="rememberMe" type="checkbox"> Oturumda Hatırla</label>
+        <button id="authSubmit" class="btn" type="submit">Giriş</button>
+      </div>
+      <p class="auth-note">Not: Bu basit client-side koruma üretim amaçlı güvenli değildir. Değiştirmek için sayfadaki sabitleri düzenleyin.</p>
+    </form>
+  </div>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Gölge Rotalar Anasayfa">
+         <img src="assets/icon.png" alt="Gölge Rotalar logo" class="logo">
+        <span class="brand-name">Gölge Rotalar</span>
+      </a>
+      <!-- Mobil hamburger -->
+      <button id="nav-toggle" class="nav-toggle" aria-controls="mobile-nav" aria-expanded="false" aria-label="Menüyü aç">
+        <span class="hamburger" aria-hidden="true"></span>
+      </button>
+
+      <nav class="main-nav" aria-label="Ana Menü">
+        <a href="index.html#routes">Rotalar</a>
+        <a href="vision.html">Hakkımızda</a>
+        <a href="blog.html">Blog</a>
+        <a href="index.html#community">Topluluk</a>
+        <a href="index.html#contact">Bize Ulaşın</a>
+      </nav>
+
+      <!-- Mobil açılır menü (başlangıçta gizli) -->
+      <div id="mobile-nav" class="mobile-nav" aria-hidden="true">
+        <a href="index.html#routes">Rotalar</a>
+        <a href="vision.html">Hakkımızda</a>
+        <a href="blog.html">Blog</a>
+        <a href="index.html#community">Topluluk</a>
+        <a href="index.html#contact">Bize Ulaşın</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Admin: Rezervasyonlar</h1>
+    <p class="admin-empty">Bu sayfa, tarayıcıdaki <code>localStorage</code> içinde saklanan rezervasyon kayıtlarını gösterir ve CSV/JSON olarak dışa aktarır.</p>
+
+    <div class="admin-controls">
+      <button id="loadBtn" class="btn">Yükle</button>
+      <button id="exportCsvBtn" class="btn">CSV Olarak İndir</button>
+      <button id="exportJsonBtn" class="btn">JSON Olarak İndir</button>
+      <button id="clearBtn" class="btn">Tümünü Sil</button>
+    </div>
+
+    <div id="tableWrap">
+      <p class="admin-empty">Henüz yüklenmedi.</p>
+    </div>
+  </main>
+
+  <footer class="site-footer container">
+    <div>
+      <strong>Gölge Rotalar</strong>
+      <p>İletişim: <a href="mailto:bugraakbugra@hotmail.com">bugraakbugra@hotmail.com</a> • <a href="https://instagram.com/bugraozcicekk" target="_blank" rel="noopener noreferrer">@bugraozcicekk</a></p>
+    </div>
+    <div>
+      <p>&copy; <span id="year-admin"></span> Gölge Rotalar</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year-admin').textContent = new Date().getFullYear();
+
+    const KEY = 'gr_reservations_v1';
+    const loadBtn = document.getElementById('loadBtn');
+    const exportCsvBtn = document.getElementById('exportCsvBtn');
+    const exportJsonBtn = document.getElementById('exportJsonBtn');
+    const clearBtn = document.getElementById('clearBtn');
+    const tableWrap = document.getElementById('tableWrap');
+
+    function readReservations(){
+      try{
+        return JSON.parse(localStorage.getItem(KEY) || '[]');
+      }catch(e){ return [] }
+    }
+
+    function renderTable(list){
+      if(!list || !list.length){
+        tableWrap.innerHTML = '<p class="admin-empty">Kayıt yok.</p>';
+        return;
+      }
+      const table = document.createElement('table');
+      table.className = 'admin-table';
+      const thead = document.createElement('thead');
+      thead.innerHTML = '<tr><th>#</th><th>Rota</th><th>Ad</th><th>E-posta</th><th>Tarih</th><th>Kişi</th><th>Mesaj</th><th>Oluşturulma</th></tr>';
+      table.appendChild(thead);
+      const tbody = document.createElement('tbody');
+      list.forEach((r,i)=>{
+        const tr = document.createElement('tr');
+        tr.innerHTML = '<td>'+(i+1)+'</td>'+
+          '<td>'+escapeHTML(r.route||'')+'</td>'+
+          '<td>'+escapeHTML((r.data && r.data.name) || '')+'</td>'+
+          '<td>'+escapeHTML((r.data && r.data.email) || '')+'</td>'+
+          '<td>'+escapeHTML((r.data && r.data.date) || '')+'</td>'+
+          '<td>'+escapeHTML((r.data && r.data.people) || '')+'</td>'+
+          '<td>'+escapeHTML((r.data && r.data.message) || '')+'</td>'+
+          '<td>'+escapeHTML(r.createdAt || '')+'</td>';
+        tbody.appendChild(tr);
+      });
+      table.appendChild(tbody);
+      tableWrap.innerHTML = '';
+      tableWrap.appendChild(table);
+    }
+
+    function escapeHTML(s){ return (s+'').replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#39;"}[c] }) }
+
+    function download(filename, content, type){
+      const blob = new Blob([content], {type:type});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = filename; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+    }
+
+    loadBtn.addEventListener('click', ()=>{
+      const list = readReservations();
+      renderTable(list);
+    });
+
+    exportJsonBtn.addEventListener('click', ()=>{
+      const list = readReservations();
+      download('reservations.json', JSON.stringify(list, null, 2), 'application/json');
+    });
+
+    exportCsvBtn.addEventListener('click', ()=>{
+      const list = readReservations();
+      if(!list.length){ alert('Kayıt yok.'); return }
+      const rows = [['route','name','email','date','people','message','createdAt']];
+      list.forEach(r=>{
+        rows.push([
+          r.route || '',
+          (r.data && r.data.name) || '',
+          (r.data && r.data.email) || '',
+          (r.data && r.data.date) || '',
+          (r.data && r.data.people) || '',
+          (r.data && r.data.message) || '',
+          r.createdAt || ''
+        ].map(v => '"'+(''+v).replace(/"/g,'""')+'"'));
+      });
+      const csv = rows.map(r=>r.join(',')).join('\r\n');
+      download('reservations.csv', csv, 'text/csv');
+    });
+
+    clearBtn.addEventListener('click', ()=>{
+      if(!confirm('Tüm rezervasyon kayıtlarını silmek istediğine emin misin? Bu işlem geri alınamaz.')) return;
+      localStorage.removeItem(KEY);
+      tableWrap.innerHTML = '<p class="admin-empty">Kayıt yok.</p>';
+      alert('Kayıtlar silindi.');
+    });
+
+    // --- AUTH: simple client-side gate ---
+  // Change these constants to set the password/code you want.
+  // Updated per user request:
+  const ADMIN_PASSWORD = 'bugi';
+  const ADMIN_CODE = 'bugraozcicek23';
+    const MAX_ATTEMPTS = 6;
+
+    const overlay = document.getElementById('authOverlay');
+    const authForm = document.getElementById('authForm');
+    const passInput = document.getElementById('adminPassword');
+    const codeInput = document.getElementById('adminCode');
+    const rememberInput = document.getElementById('rememberMe');
+
+    function lockPage(){
+      overlay.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+    function unlockPage(){
+      overlay.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+
+    // Check sessionStorage first (per-tab) or localStorage if remembered
+    const remembered = localStorage.getItem('gr_admin_remember') === '1';
+    if(sessionStorage.getItem('gr_admin_ok') === '1' || remembered){
+      // allow access
+      unlockPage();
+    } else {
+      lockPage();
+    }
+
+    let attempts = 0;
+    authForm.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      attempts++;
+      if(attempts > MAX_ATTEMPTS){
+        alert('Çok fazla başarısız deneme. Sayfa yeniden yüklenecek.');
+        location.reload();
+        return;
+      }
+      const pass = passInput.value || '';
+      const code = codeInput.value || '';
+      if(pass === ADMIN_PASSWORD && code === ADMIN_CODE){
+        sessionStorage.setItem('gr_admin_ok','1');
+        if(rememberInput.checked){ localStorage.setItem('gr_admin_remember','1'); }
+        unlockPage();
+        loadBtn.click(); // load data after auth
+      } else {
+        alert('Parola veya kod hatalı. Lütfen tekrar deneyin.');
+        passInput.value = ''; codeInput.value = ''; passInput.focus();
+      }
+    });
+
+    // Allow Esc to clear and Ctrl+Enter to submit quickly
+    authForm.addEventListener('keydown', (ev)=>{
+      if(ev.key === 'Escape'){ passInput.value=''; codeInput.value=''; }
+      if((ev.ctrlKey || ev.metaKey) && ev.key === 'Enter'){ authForm.requestSubmit(); }
+    });
+
+    // Autoload on open (if already unlocked)
+    document.addEventListener('DOMContentLoaded', ()=>{
+      if(sessionStorage.getItem('gr_admin_ok') === '1' || remembered) loadBtn.click();
+    });
+  </script>
+</body>
+</html>
