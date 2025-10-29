@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Eski Ruhlar Rotası — Gölge Rotalar</title>
+  <meta name="description" content="Eski Ruhlar Rotası — terk edilmiş yerleşimler ve efsaneler etrafında rehberli, deneyim odaklı bir tur.">
+  <meta property="og:title" content="Eski Ruhlar Rotası — Gölge Rotalar">
+  <meta property="og:description" content="Eski Ruhlar Rotası — terk edilmiş yerleşimler ve efsaneler etrafında rehberli, deneyim odaklı bir tur.">
+  <meta property="og:image" content="assets/route3-1200.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Gölge Rotalar Anasayfa">
+        <img src="assets/logo.svg" alt="Gölge Rotalar logo" class="logo">
+        <span class="brand-name">Gölge Rotalar</span>
+      </a>
+      <nav class="main-nav" aria-label="Ana Menü">
+        <a href="index.html#routes">Rotalar</a>
+        <a href="vision.html">Hakkımızda</a>
+        <a href="#contact">Bize Ulaşın</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="route-hero">
+    <img src="assets/route3-1200.jpg" alt="Eski Ruhlar Rotası">
+    <div class="route-hero-content container">
+      <h1>Eski Ruhlar Rotası</h1>
+      <p class="route-meta">Süre: 4 saat • Zorluk: Orta • Kişi başı önerilen bütçe: Yüksek</p>
+    </div>
+  </section>
+
+  <main class="route-content">
+    <div class="container">
+      <h2>Tur Açıklaması</h2>
+      <p>Eski Ruhlar Rotası, terk edilmiş yerleşimler, eski mezarlıklar ve efsanevi bölgeler etrafında rehberli bir keşif sunar. Anlatımlar dramaturjik öğelerle, yerel performerlarla zenginleştirilir.</p>
+
+      <h3>Program</h3>
+      <ul>
+        <li>Başlangıç: 19:30 - Buluşma ve güvenlik brifingi</li>
+        <li>20:00 - Anlatı ve yürüyüş</li>
+        <li>21:30 - Performans ve kapanış</li>
+      </ul>
+
+      <h3>Dahil Olanlar</h3>
+      <p>Profesyonel rehberlik, küçük atıştırmalıklar ve güvenlik ekipmanları. Tur, deneyim odaklı olup sınırlı katılımcı sayısına sahiptir.</p>
+
+      <button class="btn book" data-open-reservation data-route="Eski Ruhlar Rotası">Rezervasyon Yap</button>
+
+      <h3>Fotoğraf Galerisi</h3>
+      <div class="gallery">
+        <div class="thumb" data-full="assets/route3-1200.jpg"><img src="assets/route3-400.jpg" alt="Eski Ruhlar 1"></div>
+        <div class="thumb" data-full="assets/route3-1200.jpg"><img src="assets/route3-800.jpg" alt="Eski Ruhlar 2"></div>
+        <div class="thumb" data-full="assets/route3-1200.jpg"><img src="assets/route3-1200.jpg" alt="Eski Ruhlar 3"></div>
+      </div>
+
+      <p><a class="back-link" href="index.html">← Rotalara Geri Dön</a></p>
+    </div>
+  </main>
+
+  <!-- Reservation modal -->
+  <div class="modal-overlay" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true">
+      <button class="close" aria-label="Kapat">✕</button>
+      <h3>Rezervasyon — Eski Ruhlar Rotası</h3>
+      <form data-route="Eski Ruhlar Rotası">
+        <div class="field"><label>Ad Soyad<input name="name" required></label></div>
+        <div class="field"><label>E-posta<input name="email" type="email" required></label></div>
+        <div class="field"><label>Tarih<input name="date" type="date"></label></div>
+        <div class="field"><label>Kişi sayısı<input name="people" type="number" min="1" value="1"></label></div>
+        <div class="field"><label>Mesaj<textarea name="message" rows="4"></textarea></label></div>
+        <div class="actions"><button class="btn" type="button">Vazgeç</button><button class="btn primary" type="submit">E-posta ile Gönder</button></div>
+      </form>
+    </div>
+  </div>
+
+  <footer class="site-footer container" id="contact">
+    <div>
+      <strong>Gölge Rotalar</strong>
+      <p>İletişim: <a href="mailto:info@golgerotalar.example">info@golgerotalar.example</a></p>
+    </div>
+    <div>
+      <p>&copy; <span id="year-route3"></span> Gölge Rotalar</p>
+    </div>
+  </footer>
+  <script>document.getElementById('year-route3').textContent = new Date().getFullYear();</script>
+  <script src="js/main.js"></script>
+</body>
+</html>

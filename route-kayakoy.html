@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Kayaköy Sisli Akşam Turu — Gölge Rotalar</title>
+  <meta name="description" content="Kayaköy sisli akşam turu — tarihin karanlık hikayelerini rehber eşliğinde keşfedin.">
+  <meta property="og:title" content="Kayaköy Sisli Akşam Turu — Gölge Rotalar">
+  <meta property="og:description" content="Kayaköy sisli akşam turu — tarihin karanlık hikayelerini rehber eşliğinde keşfedin.">
+  <meta property="og:image" content="assets/route1-1200.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Gölge Rotalar Anasayfa">
+        <img src="assets/logo.svg" alt="Gölge Rotalar logo" class="logo">
+        <span class="brand-name">Gölge Rotalar</span>
+      </a>
+      <nav class="main-nav" aria-label="Ana Menü">
+        <a href="index.html#routes">Rotalar</a>
+        <a href="vision.html">Hakkımızda</a>
+        <a href="#contact">Bize Ulaşın</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="route-hero">
+    <img src="assets/route1-1200.jpg" alt="Kayaköy Sisli Akşam Turu">
+    <div class="route-hero-content container">
+      <h1>Kayaköy — Sisli Akşam Turu</h1>
+      <p class="route-meta">Süre: 3 saat • Zorluk: Kolay-Orta • Kişi başı önerilen bütçe: Orta</p>
+    </div>
+  </section>
+
+  <main class="route-content">
+    <div class="container">
+      <h2>Tur Açıklaması</h2>
+      <p>Kayaköy'ün terk edilmiş sokaklarında, sis ve gece ışıkları arasında rehberimiz eşliğinde yürürsünüz. Bölgenin tarihsel anlatıları, yerel mitleri ve yereldeki küçük performanslarla atmosfer desteklenir.</p>
+
+      <h3>Detaylı Program</h3>
+      <ul>
+        <li>Başlangıç: 20:00 - Toplanma ve güvenlik brifingi</li>
+        <li>20:20 - Sisli sokak yürüyüşü ve öykü anlatımı</li>
+        <li>21:15 - Kısa ara ve fotoğraf molası</li>
+        <li>21:30 - Kapanış ve dönüş</li>
+      </ul>
+
+      <h3>Fiyatlama & Dahil Olanlar</h3>
+      <p>Tur fiyatı kişibaşı bazındadır. Fiyata rehberlik, küçük ikramlar ve güvenlik ekipmanları dahildir.</p>
+
+      <button class="btn book" data-open-reservation data-route="Kayaköy — Sisli Akşam Turu">Rezervasyon Yap</button>
+
+      <h3>Fotoğraf Galerisi</h3>
+      <div class="gallery">
+        <div class="thumb" data-full="assets/route1-1200.jpg"><img src="assets/route1-400.jpg" alt="Kayaköy 1"></div>
+        <div class="thumb" data-full="assets/route1-1200.jpg"><img src="assets/route1-800.jpg" alt="Kayaköy 2"></div>
+        <div class="thumb" data-full="assets/route1-1200.jpg"><img src="assets/route1-1200.jpg" alt="Kayaköy 3"></div>
+      </div>
+
+      <p><a class="back-link" href="index.html">← Rotalara Geri Dön</a></p>
+    </div>
+  </main>
+  <!-- Reservation modal -->
+  <div class="modal-overlay" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true">
+      <button class="close" aria-label="Kapat">✕</button>
+      <h3>Rezervasyon — Kayaköy Sisli Akşam Turu</h3>
+      <form data-route="Kayaköy — Sisli Akşam Turu">
+        <div class="field"><label>Ad Soyad<input name="name" required></label></div>
+        <div class="field"><label>E-posta<input name="email" type="email" required></label></div>
+        <div class="field"><label>Tarih<input name="date" type="date"></label></div>
+        <div class="field"><label>Kişi sayısı<input name="people" type="number" min="1" value="1"></label></div>
+        <div class="field"><label>Mesaj<textarea name="message" rows="4"></textarea></label></div>
+        <div class="actions"><button class="btn" type="button">Vazgeç</button><button class="btn primary" type="submit">E-posta ile Gönder</button></div>
+      </form>
+    </div>
+  </div>
+
+  <footer class="site-footer container" id="contact">
+    <div>
+      <strong>Gölge Rotalar</strong>
+      <p>İletişim: <a href="mailto:info@golgerotalar.example">info@golgerotalar.example</a></p>
+    </div>
+    <div>
+      <p>&copy; <span id="year-route1"></span> Gölge Rotalar</p>
+    </div>
+  </footer>
+  <script>document.getElementById('year-route1').textContent = new Date().getFullYear();</script>
+  <script src="js/main.js"></script>
+</body>
+</html>
