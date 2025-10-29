@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Gölge Rotalar — Sadece Tarihi Değil, Hikayeyi Ziyaret Edin.</title>
+  <meta name="description" content="Gölge Rotalar — Türkiye'nin ilk tematik karanlık turizm acentesi. Unutulmuş hikayeleri, sisli geceleri ve tarihi keşifleri rehberli turlarla deneyimleyin.">
+  <meta property="og:title" content="Gölge Rotalar — Sadece Tarihi Değil, Hikayeyi Ziyaret Edin.">
+  <meta property="og:description" content="Gölge Rotalar — Türkiye'nin ilk tematik karanlık turizm acentesi. Rehberli gece turları, sisli keşifler ve tarihi anlatılar.">
+  <meta property="og:image" content="assets/hero-poster-1600.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="assets/icon.jpg" type="image/jpeg">
+  <link rel="apple-touch-icon" href="assets/icon.jpg">
+</head>
+<body>
+  <div id="page-transition" class="page-transition" aria-hidden="true"></div>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Gölge Rotalar Anasayfa">
+        <img src="assets/icon.jpg" alt="Gölge Rotalar logo" class="logo">
+        <span class="brand-name">Gölge Rotalar</span>
+      </a>
+      <!-- Mobil hamburger -->
+      <button id="nav-toggle" class="nav-toggle" aria-controls="mobile-nav" aria-expanded="false" aria-label="Menüyü aç">
+        <span class="hamburger" aria-hidden="true"></span>
+      </button>
+
+      <nav class="main-nav" aria-label="Ana Menü">
+        <a href="#routes">Rotalar</a>
+        <a href="vision.html">Hakkımızda</a>
+        <a href="#blog">Blog</a>
+        <a href="#community">Topluluk</a>
+        <a href="#contact">Bize Ulaşın</a>
+      </nav>
+
+      <!-- Mobil açılır menü (başlangıçta gizli) -->
+      <div id="mobile-nav" class="mobile-nav" aria-hidden="true">
+        <a href="#routes">Rotalar</a>
+        <a href="vision.html">Hakkımızda</a>
+        <a href="#blog">Blog</a>
+        <a href="#community">Topluluk</a>
+        <a href="#contact">Bize Ulaşın</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="hero">
+      <video id="hero-video" class="hero-video" autoplay muted loop playsinline poster="assets/hero-poster-1600.jpg">
+        <source src="assets/hero.mp4" type="video/mp4">
+        <!-- Eğer video yoksa arka plan resmi görünür -->
+      </video>
+
+      <div class="hero-overlay">
+        <div class="hero-content">
+          <h1 class="title hero-item reveal">Gölge Rotalar</h1>
+          <p class="slogan hero-item reveal">Sadece Tarihi Değil, Hikayeyi Ziyaret Edin.</p>
+          <p class="subtitle hero-item reveal">Türkiye'nin İlk Tematik Karanlık Turizm Acentesi.</p>
+          <div class="hero-actions hero-item reveal">
+            <a id="enter-btn" class="btn primary" href="vision.html">Giriş</a>
+            <a class="btn ghost" href="#routes">Rotalara Gözat</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="routes" class="routes preview container">
+      <h2>Öne Çıkan Rotalar</h2>
+      <div class="cards">
+        <article class="card reveal">
+          <a class="card-link" href="route-kayakoy.html">
+        <img class="card-img lazy" data-src="assets/kayakoy-800.jpeg"
+          data-srcset="assets/kayakoy-400.jpg 400w, assets/kayakoy-800.jpeg 800w, assets/kayakoy-1200.jpg 1200w"
+                 data-sizes="(max-width:700px) 100vw, 33vw"
+                 alt="Kayaköy Sisli Akşam Turu görseli" />
+            <h3>Kayaköy Sisli Akşam Turu</h3>
+            <p>Kapalı kent sokaklarında rehberli bir gece yürüyüşü.</p>
+          </a>
+        </article>
+        <article class="card reveal">
+          <a class="card-link" href="route-sinop.html">
+        <img class="card-img lazy" data-src="assets/sinop-800.jpeg"
+          data-srcset="assets/sinop-400.jpeg 400w, assets/sinop-800.jpeg 800w, assets/sinop-1200.jpg 1200w"
+                 data-sizes="(max-width:700px) 100vw, 33vw"
+                 alt="Sinop Kalesi Gece Keşfi görseli" />
+            <h3>Sinop Kalesi Gece Keşfi</h3>
+            <p>Fener ışıkları ve dalga sesleriyle karanlık anlatılar.</p>
+          </a>
+        </article>
+        <article class="card reveal">
+          <a class="card-link" href="route-eski-ruhlar.html">
+        <img class="card-img lazy" data-src="assets/eski-ruhlar-800.jpg"
+          data-srcset="assets/eski-ruhlar-400.jpg 400w, assets/eski-ruhlar-800.jpg 800w, assets/eski-ruhlar-1200.jpg 1200w"
+                 data-sizes="(max-width:700px) 100vw, 33vw"
+                 alt="Eski Ruhlar Rotası görseli" />
+            <h3>Eski Ruhlar Rotası</h3>
+            <p>Yitik hikâyeler ve tarihi mekanlar eşliğinde deneyim.</p>
+          </a>
+        </article>
+        <article class="card reveal">
+          <a class="card-link" href="route-halfeti.html">
+      <img class="card-img lazy" data-src="assets/halfeti-800.jpeg"
+        data-srcset="assets/halfeti-400.jpeg 400w, assets/halfeti-800.jpeg 800w, assets/halfeti-1200.webp 1200w"
+                 data-sizes="(max-width:700px) 100vw, 33vw"
+                 alt="Halfeti Batık Kent Keşfi görseli" />
+            <h3>Halfeti — Batık Kent Keşfi</h3>
+            <p>Sular altındaki tarih ve terk edilmiş mahallelerin hikâyeleri.</p>
+          </a>
+        </article>
+        <article class="card reveal">
+          <a class="card-link" href="route-amasra.html">
+      <img class="card-img lazy" data-src="assets/amasra-800.jpg"
+        data-srcset="assets/amasra-400.webp 400w, assets/amasra-800.jpg 800w, assets/amasra-1200.webp 1200w"
+                 data-sizes="(max-width:700px) 100vw, 33vw"
+                 alt="Amasra Sisli Kıyılar görseli" />
+            <h3>Amasra — Sisli Kıyılar</h3>
+            <p>Fener ışıkları, sis ve kıyı efsaneleriyle gece yürüyüşü.</p>
+          </a>
+        </article>
+        <article class="card reveal">
+          <a class="card-link" href="route-kapadokya.html">
+            <img class="card-img lazy" data-src="assets/kapadokya-800.jpg"
+                 data-srcset="assets/kapadokya-400.jpg 400w, assets/kapadokya-800.jpg 800w, assets/kapadokya-1200.jpg 1200w"
+                 data-sizes="(max-width:700px) 100vw, 33vw"
+                 alt="Kapadokya Yeraltı Geçmişi görseli" />
+            <h3>Kapadokya — Yeraltı Geçmişi</h3>
+            <p>Yeraltı şehirlerinin labirentlerinde tarih ve efsaneler.</p>
+          </a>
+        </article>
+        <article class="card reveal">
+          <a class="card-link" href="route-mardin.html">
+        <img class="card-img lazy" data-src="assets/mardin-800.jpeg"
+          data-srcset="assets/mardin-400.webp 400w, assets/mardin-800.jpeg 800w, assets/mardin-1200.webp 1200w"
+                 data-sizes="(max-width:700px) 100vw, 33vw"
+                 alt="Mardin Taş Sokaklar görseli" />
+            <h3>Mardin — Taş Sokaklar</h3>
+            <p>Taş sokaklarda tarih, mimari ve eski yaşam öyküleri.</p>
+          </a>
+        </article>
+        <article class="card reveal">
+          <a class="card-link" href="route-bozcaada.html">
+        <img class="card-img lazy" data-src="assets/bozcaada-800.jpg"
+          data-srcset="assets/bozcaada-400.jpg 400w, assets/bozcaada-800.jpg 800w, assets/bozcaada-1200.jpg 1200w"
+                 data-sizes="(max-width:700px) 100vw, 33vw"
+                 alt="Bozcaada Rüzgârın İzleri görseli" />
+            <h3>Bozcaada — Rüzgârın İzleri</h3>
+            <p>Rüzgârın ve bağların arasında gece gezintisi ve efsaneler.</p>
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <section id="about" class="container about">
+      <h2>Neden Karanlık Turizm?</h2>
+      <p>Gölge Rotalar, tarihin karanlık yanlarını, unutulmuş hikâyeleri ve yerel mitleri sorumluluk bilinciyle deneyimlemek isteyenler için tasarlanmıştır. Güvenlik ve saygı çerçevesinde benzersiz deneyimler sunuyoruz.</p>
+    </section>
+
+    <footer id="contact" class="site-footer container">
+      <div>
+        <strong>Gölge Rotalar</strong>
+        <p>İletişim: <a href="mailto:bugraakbugra@hotmail.com">bugraakbugra@hotmail.com</a> • <a href="https://instagram.com/bugraozcicekk" target="_blank" rel="noopener noreferrer">@bugraozcicekk</a></p>
+      </div>
+      <div>
+        <p>&copy; <span id="year"></span> Gölge Rotalar</p>
+      </div>
+    </footer>
+  </main>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

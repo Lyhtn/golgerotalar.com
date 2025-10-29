@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Mardin — Taş Sokaklar — Gölge Rotalar</title>
+  <meta name="description" content="Mardin Taş Sokaklar — mimari dokular, tarih ve yerel anlatılarla gece yürüyüşü." />
+  <meta property="og:title" content="Mardin — Taş Sokaklar — Gölge Rotalar">
+  <meta property="og:description" content="Mardin Taş Sokaklar — mimari dokular, tarih ve yerel anlatılarla gece yürüyüşü.">
+  <meta property="og:image" content="assets/mardin-1200.webp">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="assets/icon.jpg" type="image/jpeg">
+  <link rel="apple-touch-icon" href="assets/icon.jpg">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Gölge Rotalar Anasayfa">
+        <img src="assets/icon.jpg" alt="Gölge Rotalar logo" class="logo">
+        <span class="brand-name">Gölge Rotalar</span>
+      </a>
+      <nav class="main-nav" aria-label="Ana Menü">
+        <a href="index.html#routes">Rotalar</a>
+        <a href="vision.html">Hakkımızda</a>
+        <a href="index.html#contact">Bize Ulaşın</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="route-hero">
+  <img src="assets/mardin-1200.webp" alt="Mardin Taş Sokaklar">
+    <div class="route-hero-content container">
+      <h1>Mardin — Taş Sokaklar</h1>
+      <p class="route-meta">Süre: 3 saat • Zorluk: Kolay • Kişi başı önerilen bütçe: Orta</p>
+    </div>
+  </section>
+
+  <main class="route-content">
+    <div class="container">
+  <h2>Tur Açıklaması</h2>
+  <p>Mardin'in teras sokaklarında taşların ve minarelerin gölgesinde yürüyün. Rehberimiz, taş işçiliğinin, eski hanların ve çokkültürlü yaşamın kısa hikâyelerini aktarır; akşamın ışığında şehir farklı bir zamana açılır.</p>
+
+      <button class="btn book" data-open-reservation data-route="Mardin — Taş Sokaklar">Rezervasyon Yap</button>
+
+      <h3>Fotoğraf Galerisi</h3>
+      <div class="gallery">
+  <div class="thumb" data-full="assets/mardin-1200.webp"><img src="assets/mardin-400.webp" alt="Mardin 1"></div>
+  <div class="thumb" data-full="assets/mardin-1200.webp"><img src="assets/mardin-800.jpeg" alt="Mardin 2"></div>
+      </div>
+
+      <p><a class="back-link" href="index.html">← Rotalara Geri Dön</a></p>
+    </div>
+  </main>
+
+  <div class="modal-overlay" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true">
+      <button class="close" aria-label="Kapat">✕</button>
+      <h3>Rezervasyon — Mardin Taş Sokaklar</h3>
+      <form data-route="Mardin — Taş Sokaklar">
+        <div class="field"><label>Ad Soyad<input name="name" required></label></div>
+        <div class="field"><label>E-posta<input name="email" type="email" required></label></div>
+        <div class="field"><label>Tarih<input name="date" type="date"></label></div>
+        <div class="field"><label>Kişi sayısı<input name="people" type="number" min="1" value="1"></label></div>
+        <div class="field"><label>Mesaj<textarea name="message" rows="4"></textarea></label></div>
+        <div class="actions"><button class="btn" type="button">Vazgeç</button><button class="btn primary" type="submit">E-posta ile Gönder</button></div>
+      </form>
+    </div>
+  </div>
+
+  <footer class="site-footer container" id="contact">
+    <div>
+      <strong>Gölge Rotalar</strong>
+      <p>İletişim: <a href="mailto:bugraakbugra@hotmail.com">bugraakbugra@hotmail.com</a> • <a href="https://instagram.com/bugraozcicekk" target="_blank" rel="noopener noreferrer">@bugraozcicekk</a></p>
+    </div>
+    <div>
+      <p>&copy; <span id="year-mardin"></span> Gölge Rotalar</p>
+    </div>
+  </footer>
+  <script>document.getElementById('year-mardin').textContent = new Date().getFullYear();</script>
+  <script src="js/main.js"></script>
+</body>
+</html>
